@@ -1,16 +1,16 @@
 package kotlintryouts.gameoflife.java;
 
 /**
- * @author <a href="mailto:M.Lang@Reply.de">m.lang</a>
- *         Created on 24.12.2015.
+ * Created by m.lang on 24.12.2015.
  */
 public class GameOfLife {
 
     private boolean[][] grid;
-    private int xsize = 36;
-    private int ysize = 36;
+    private int xsize;
+    private int ysize;
 
     public GameOfLife(int xsize, int ysize) {
+        System.out.println("Game Of Life with Java!");
         this.xsize = xsize;
         this.ysize = ysize;
         grid = new boolean[xsize][ysize];
@@ -18,11 +18,11 @@ public class GameOfLife {
 
     public void doGeneration() {
         boolean[][] nextgen = new boolean[xsize][ysize];
-        for (int y = 0; y < xsize; y++) {
+        for (int y = 0; y < ysize; y++) {
             int above,below;
             above = y > 0 ? y - 1 : ysize - 1;
             below = y < ysize - 1 ? y + 1 : 0;
-            for (int x = 0; x < ysize; x++) {
+            for (int x = 0; x < xsize; x++) {
                 int left,right;
                 left = x > 0 ? x - 1 : xsize - 1;
                 right = x < xsize - 1 ? x + 1 : 0;
@@ -45,10 +45,7 @@ public class GameOfLife {
                 if (grid[right][below])
                     neighbours++;
                 // dead or alive?
-                if (neighbours == 3 || (grid[x][y] && neighbours == 2))
-                    nextgen[x][y] = true;
-                else
-                    nextgen[x][y] = false;
+                nextgen[x][y] = neighbours == 3 || (grid[x][y] && neighbours == 2);
             }
         }
         grid = nextgen;
