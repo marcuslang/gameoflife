@@ -3,7 +3,7 @@ package kotlintryouts.gameoflife.kotlin
 /**
 * Created by m.lang on 23.01.2016.
 */
-class GameOfLife(val xsize: Int, val ysize: Int) {
+class KotlinGameOfLife(val xsize: Int, val ysize: Int) {
 
     public var grid: Array<BooleanArray>? = null
 
